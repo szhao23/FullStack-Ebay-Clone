@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function TopMenu() {
   return (
@@ -23,7 +24,7 @@ export default function TopMenu() {
             <div
               // Dropdown bar bottom
               id="AuthDropdown"
-              className="absolute bg-white w-[200px] text-[#333333] z-40 top-[20px] left-0 border shadow-lg"
+              className="hidden absolute bg-white w-[200px] text-[#333333] z-40 top-[20px] left-0 border shadow-lg"
             >
               <div className="flex items-center justify-start gap-1 p-3">
                 <img width={50} src="https://picsum.photos/200/" />
@@ -40,6 +41,24 @@ export default function TopMenu() {
                   Sign Out
                 </li>
               </ul>
+            </div>
+          </li>
+          <li className="px-3 hover:underline cursor-pointer">Daily Deals</li>
+          <li className="px-3 hover:underline cursor-pointer">
+            Help & Support
+          </li>
+        </ul>
+        <ul
+          id="TopMenuRight"
+          className="flex items-center text-[11px] text-[#333333] px-2 h-8"
+        >
+          <li className="flex items-center gap-2 px-3 hover:underline cursor-pointer">
+            <img width={32} src="/images/uk.png" />
+            Ship to
+          </li>
+          <li className="px-3 hover:underline cursor-pointer">
+            <div className="relative">
+              <AiOutlineShoppingCart size={22} />
             </div>
           </li>
         </ul>
