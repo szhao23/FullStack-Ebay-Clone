@@ -23,6 +23,20 @@ export default function MainHeader() {
                     <button className="flex items-center">
                       <AiOutlineSearch size={22} />
                     </button>
+
+                    <input
+                      className="w-full placeholder-gray-400 text-sm pl-3 focus:outline-none"
+                      placeholder="Search for anything"
+                      type="text"
+                    />
+                  </div>
+
+                  <button className="flex items-center bg-blue-600 text-sm font-semibold text-white p-[11px] ml-2 px-14 rounded-sm ">
+                    Search
+                  </button>
+
+                  <div className="text-xs px-2 hover:text-blue-500 cursor-pointer">
+                    Advanced
                   </div>
                 </div>
               </div>
