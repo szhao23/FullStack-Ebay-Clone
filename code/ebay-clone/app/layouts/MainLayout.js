@@ -3,6 +3,7 @@
 import TopMenu from "./includes/TopMenu";
 import MainHeader from "./includes/MainHeader";
 import SubMenu from "./includes/SubMenu";
+import Footer from "./includes/Footer";
 
 // Main Layout Content
 export default function MainLayout({ children }) {
@@ -13,6 +14,10 @@ export default function MainLayout({ children }) {
           <TopMenu />
           <MainHeader />
           <SubMenu />
+
+          {children}
+
+          <Footer />
         </div>
       </div>
     </>
