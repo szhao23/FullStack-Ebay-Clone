@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 const Context = createContext();
 
@@ -20,6 +20,7 @@ const Provider = ({ children }) => {
   };
 
   const addToCart = (product) => {
+    let cart = [];
     if (typeof localStorage !== "undefined") {
       // Either return items in cart or return empty array
       cart = JSON.parse(localStorage.getItem("cart")) || [];
