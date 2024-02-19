@@ -48,7 +48,18 @@ export default function Product({ params }) {
                     </div>
                   ) : null}
                 </div>
+
+                <button className="bg-[#3498C9] text-white py-2 px-20 rounded-full cursor-pointer">
+                  Add To Cart
+                </button>
               </div>
+            </div>
+
+            <div className="border-b py-1" />
+
+            <div className="pt-3">
+              <div className="font-semibold pb-1">Description:</div>
+              <div className="text-sm">{product?.description}</div>
             </div>
           </div>
         </div>
