@@ -24,8 +24,6 @@ export default function AuthPage() {
                 providers={['google']}
                 appearance={{theme: ThemeSupa}}
             />
-
-
         </div>
       </div>
     </>
