@@ -42,4 +42,34 @@ const Provider = ({ children }) => {
       setPicture(theUser.identities[0].identity_data.picture);
     }
   };
+
+  useEffect(() => {
+    const isUser = async () => {
+      const currentSession = await getCurrentSession();
+      if (currentSession) await getCurrentUser();
+    };
+    isUser();
+  }, []);
+
+  const signOut = async () => {
+    await supabaseClient.auth.signOut();
+    clearUser();
+    router.push("/");
+  };
+
+  const clearUser = () => {
+    setUser(null);
+    setId(null);
+    setEmail(null);
+    setName(null);
+    setPicture(null);
+  };
+
+  const exposed = { user, id, email, name, picture, signOut };
+
+  return <Context.Provider value={exposed}>{children}</Context.Provider>;
 };
+
+export const useUser = () => useContext(Context);
+
+export default Provider;
