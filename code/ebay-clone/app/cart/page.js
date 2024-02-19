@@ -39,9 +39,16 @@ export default function Cart() {
                   <div>$12.99</div>
                 </div>
 
-                <div className="flex items-center justify-between mt-4 text-sm">
+                <div className="flex items-center justify-between mb-4 text-sm">
                   <div>Shipping: </div>
                   <div>Free</div>
+                </div>
+
+                <div className="border-b border-gray-300" />
+
+                <div className="flex items-center justify-between mt-4 mb-1 text-lg font-semibold">
+                  <div>Subtotal</div>
+                  <div>$12.99</div>
                 </div>
               </div>
             </div>
