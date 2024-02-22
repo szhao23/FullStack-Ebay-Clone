@@ -1,7 +1,8 @@
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
+import { middleware } from "./ebay-clone/.next/server/vendor-chunks/next";
 
-export async function middle(req) {
+export async function middleware(req) {
   const res = NextResponse.next();
 
   const supabase = createMiddlewareClient({ req, res });
