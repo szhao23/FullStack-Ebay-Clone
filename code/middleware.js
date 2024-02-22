@@ -24,4 +24,6 @@ export async function middle(req) {
   ) {
     return NextResponse.redirect(new URL("/auth", req.url));
   }
+
+  return res;
 }
