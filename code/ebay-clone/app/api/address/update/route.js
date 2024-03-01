@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-// Post Method without being logged in
+// Update Method without being logged in
 export async function POST(req) {
   const supabase = createServerComponentClient({ cookies });
 
@@ -18,9 +18,9 @@ export async function POST(req) {
 
     const body = await req.json();
 
-    const res = await prisma.addresses.create({
+    const res = await prisma.address.update({
+      where: { id: Number(body.addressId) },
       data: {
-        user_id: user?.id,
         name: body.name,
         address: body.address,
         zipcode: body.zipcode,
