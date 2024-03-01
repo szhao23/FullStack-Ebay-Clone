@@ -4,7 +4,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
 // Get Method without being logged in
-export async function GET() {
+export async function POST(req) {
   const supabase = createServerComponentClient({ cookies });
 
   try {
@@ -16,12 +16,21 @@ export async function GET() {
     // If no active user, throw error
     if (!user) throw Error();
 
-    // If all is good and there is a user do this
-    const res = await prisma.addresses.findFirst({
-      where: { user_id: user?.id },
+    const body = await req.json();
+
+    const res = await prisma.addresses.create({
+      data: {
+        user_id: user?.id,
+        name: body.name,
+        address: body.address,
+        zipcode: body.zipcode,
+        city: body.city,
+        country: body.country,
+      },
     });
 
     await prisma.$disconnect();
+    return new NextResponse.json(res);
   } catch (error) {
     console.log(error);
     await prisma.$disconnect();
