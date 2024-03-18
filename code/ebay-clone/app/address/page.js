@@ -3,7 +3,7 @@
 import TextInput from "../components/TextInput";
 import MainLayout from "../layouts/MainLayout";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useUser } from "../context/user";
 import { useEffect, useState } from "react";
 import useIsLoading from "../hooks/useIsLoading";
