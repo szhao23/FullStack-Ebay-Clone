@@ -3,8 +3,6 @@ import { NextResponse } from "next/server";
 
 // GET Method without being logged in
 export async function GET(req, context) {
-  const supabase = createServerComponentClient({ cookies });
-
   try {
     // Get the ID parameter
     const { id } = context.params;
