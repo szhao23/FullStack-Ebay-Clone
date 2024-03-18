@@ -5,7 +5,9 @@ import MainLayout from "../layouts/MainLayout";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useUser } from "../context/user";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useIsLoading from "../hooks/useIsLoading";
+import useUserAddress from "../hooks/useUserAddress";
 
 export default function Address() {
   const router = useRouter();
@@ -34,7 +36,20 @@ export default function Address() {
       useIsLoading(false);
       return;
     }
+
+    const response = await useUserAddress();
+    if (response) {
+      setTheCurrentAddress(response);
+      useIsLoading(false);
+      return;
+    }
+    useIsLoading(false);
   };
+
+  useEffect(() => {
+    useIsLoading(true);
+    getAddress();
+  }, [user]);
 
   return (
     <>
