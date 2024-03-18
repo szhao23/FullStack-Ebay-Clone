@@ -3,8 +3,39 @@
 import TextInput from "../components/TextInput";
 import MainLayout from "../layouts/MainLayout";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useRouter } from "next/router";
+import { useUser } from "../context/user";
+import { useState } from "react";
 
 export default function Address() {
+  const router = useRouter();
+  const { user } = useUser();
+
+  // State
+  const [addressId, setAddressId] = useState(null);
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [isUpdatingAddress, setIsUpdatingAddress] = useState(false);
+  const [error, setError] = useState({});
+
+  const showError = () => {
+    // If the error.length > 0, and the error type = type we are passing, return the error message, else return nothing
+    if (Object.entries(error).length > 0 && error?.type == type) {
+      return error.message;
+    }
+    return "";
+  };
+
+  const getAddress = async () => {
+    if (user?.id == null || user?.id == undefined) {
+      useIsLoading(false);
+      return;
+    }
+  };
+
   return (
     <>
       <MainLayout>
