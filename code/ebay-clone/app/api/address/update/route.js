@@ -1,4 +1,4 @@
-import prsima from "@/app/libs/prisma";
+import prisma from "@/app/libs/prisma";
 import { NextResponse } from "next/server";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";

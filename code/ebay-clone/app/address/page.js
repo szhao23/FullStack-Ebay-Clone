@@ -23,7 +23,8 @@ export default function Address() {
   const [isUpdatingAddress, setIsUpdatingAddress] = useState(false);
   const [error, setError] = useState({});
 
-  const showError = () => {
+  // Pass an error type
+  const showError = (type) => {
     // If the error.length > 0, and the error type = type we are passing, return the error message, else return nothing
     if (Object.entries(error).length > 0 && error?.type == type) {
       return error.message;
@@ -46,10 +47,22 @@ export default function Address() {
     useIsLoading(false);
   };
 
+  // On load/Mount of Page
   useEffect(() => {
     useIsLoading(true);
     getAddress();
   }, [user]);
+
+  // Set the Current Address
+  const setTheCurrentAddress = (result) => {
+    // Fetch information from current state
+    setAddressId(result.id);
+    setName(result.name);
+    setAddress(result.address);
+    setZipcode(result.zipcode);
+    setCity(result.city);
+    setCountry(result.country);
+  };
 
   return (
     <>
@@ -64,7 +77,7 @@ export default function Address() {
                   className="w-full"
                   string={"TEST"}
                   placeholder={"Name"}
-                  error="Uh oh, something went wrong, please check again for errors and try again."
+                  error={showError}
                 />
               </div>
 

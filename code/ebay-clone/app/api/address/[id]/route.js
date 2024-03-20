@@ -1,4 +1,4 @@
-import prsima from "@/app/libs/prisma";
+import prisma from "@/app/libs/prisma";
 import { NextResponse } from "next/server";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
@@ -22,7 +22,7 @@ export async function GET() {
     });
 
     await prisma.$disconnect();
-    return new NextResponse.json(res);
+    return NextResponse.json(res);
   } catch (error) {
     console.log(error);
     await prisma.$disconnect();
