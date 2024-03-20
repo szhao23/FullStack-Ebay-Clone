@@ -64,6 +64,30 @@ export default function Address() {
     setCountry(result.country);
   };
 
+  // Validation for Text Input
+  const validate = () => {
+    setError({});
+    let isError = false;
+
+    // If there's no name, set the type of name, pass the message
+    if (!name) {
+      setError({ type: "name", message: "A name is required." });
+      isError = true;
+    } else if (!address) {
+      setError({ type: "address", message: "An address is required." });
+      isError = true;
+    } else if (!zipcode) {
+      setError({ type: "address", message: "A zipcode is required." });
+      isError = true;
+    } else if (!city) {
+      setError({ type: "address", message: "A city is required." });
+      isError = true;
+    } else if (!country) {
+      setError({ type: "address", message: "A country is required." });
+      isError = true;
+    }
+  };
+
   return (
     <>
       <MainLayout>
