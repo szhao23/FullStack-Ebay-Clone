@@ -8,6 +8,8 @@ import { useUser } from "../context/user";
 import { useEffect, useState } from "react";
 import useIsLoading from "../hooks/useIsLoading";
 import useUserAddress from "../hooks/useUserAddress";
+import { toast } from "react-toastify";
+import useCreateAddress from "../hooks/useCreateAddress";
 
 export default function Address() {
   const router = useRouter();
@@ -85,6 +87,48 @@ export default function Address() {
     } else if (!country) {
       setError({ type: "address", message: "A country is required." });
       isError = true;
+    }
+
+    return isError;
+  };
+
+  const submit = async (event) => {
+    // Don't want the form to submit, page will refresh so need to include this
+    event.preventDefault();
+
+    // Validate
+    let isError = validate();
+
+    if (isError) {
+      toast.error(error.message, { autoClose: 3000 });
+      return;
+    }
+
+    try {
+      setIsUpdatingAddress(true);
+
+      const response = await useCreateAddress({
+        addressId,
+        name,
+        address,
+        zipcode,
+        city,
+        country,
+      });
+
+      setTheCurrentAddress(response);
+      setIsUpdatingAddress(false);
+
+      toast.success("Address has been updated successfully!", {
+        autoClose: 3000,
+      });
+
+      // Redirect to Checkout Page
+      router.push("/checkout");
+    } catch (error) {
+      setIsUpdatingAddress(false);
+      console.log(error);
+      alert(error);
     }
   };
 
