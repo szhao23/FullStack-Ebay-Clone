@@ -10,6 +10,7 @@ import useIsLoading from "../hooks/useIsLoading";
 import useUserAddress from "../hooks/useUserAddress";
 import { toast } from "react-toastify";
 import useCreateAddress from "../hooks/useCreateAddress";
+import ClientOnly from "../components/ClientOnly";
 
 export default function Address() {
   const router = useRouter();
@@ -141,12 +142,14 @@ export default function Address() {
 
             <form>
               <div className="mb-4">
-                <TextInput
-                  className="w-full"
-                  string={"TEST"}
-                  placeholder={"Name"}
-                  error={showError}
-                />
+                <ClientOnly>
+                  <TextInput
+                    className="w-full"
+                    string={"TEST"}
+                    placeholder={"Name"}
+                    error="This is an error message."
+                  />
+                </ClientOnly>
               </div>
 
               <button className="mt-6 w-full text-white text-lg font-semibold p-3 rounded bg-blue-500">
