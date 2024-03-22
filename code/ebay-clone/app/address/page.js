@@ -140,20 +140,83 @@ export default function Address() {
           <div className="mx-auto bg-white rounded-lg p-3">
             <div className="text-xl text-bold mb-2">Address Details</div>
 
-            <form>
+            <form onSubmit={submit}>
               <div className="mb-4">
                 <ClientOnly>
                   <TextInput
                     className="w-full"
-                    string={"TEST"}
-                    placeholder={"Name"}
-                    error="This is an error message."
+                    string={name}
+                    placeholder="Name"
+                    onUpdate={setName}
+                    error={showError("name")}
                   />
                 </ClientOnly>
               </div>
 
-              <button className="mt-6 w-full text-white text-lg font-semibold p-3 rounded bg-blue-500">
-                Update Address
+              <div className="mb-4">
+                <ClientOnly>
+                  <TextInput
+                    className="w-full"
+                    string={address}
+                    placeholder="Address"
+                    onUpdate={setAddress}
+                    error={showError("address")}
+                  />
+                </ClientOnly>
+              </div>
+
+              <div className="mb-4">
+                <ClientOnly>
+                  <TextInput
+                    className="w-full"
+                    string={zipcode}
+                    placeholder="Zipcode"
+                    onUpdate={setZipcode}
+                    error={showError("zipcode")}
+                  />
+                </ClientOnly>
+              </div>
+
+              <div className="mb-4">
+                <ClientOnly>
+                  <TextInput
+                    className="w-full"
+                    string={city}
+                    placeholder="City"
+                    onUpdate={setCity}
+                    error={showError("city")}
+                  />
+                </ClientOnly>
+              </div>
+
+              <div className="mb-4">
+                <ClientOnly>
+                  <TextInput
+                    className="w-full"
+                    string={country}
+                    placeholder="Country"
+                    onUpdate={setCountry}
+                    error={showError("country")}
+                  />
+                </ClientOnly>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isUpdatingAddress}
+                className={`mt-6 w-full text-white text-lg font-semibold p-3 rounded ${
+                  isUpdatingAddress ? "bg-blue-800" : "bg-blue-600"
+                }
+                `}
+              >
+                {!isUpdatingAddress ? (
+                  <div>Update Address</div>
+                ) : (
+                  <div className="flex items-center justify-center gap-2">
+                    <AiOutlineLoading3Quarters className="animate-spin" />
+                    Please wait...
+                  </div>
+                )}
               </button>
             </form>
           </div>
