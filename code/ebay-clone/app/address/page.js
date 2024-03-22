@@ -80,13 +80,13 @@ export default function Address() {
       setError({ type: "address", message: "An address is required." });
       isError = true;
     } else if (!zipcode) {
-      setError({ type: "address", message: "A zipcode is required." });
+      setError({ type: "zipcode", message: "A zipcode is required." });
       isError = true;
     } else if (!city) {
-      setError({ type: "address", message: "A city is required." });
+      setError({ type: "city", message: "A city is required." });
       isError = true;
     } else if (!country) {
-      setError({ type: "address", message: "A country is required." });
+      setError({ type: "country", message: "A country is required." });
       isError = true;
     }
 
@@ -96,7 +96,6 @@ export default function Address() {
   const submit = async (event) => {
     // Don't want the form to submit, page will refresh so need to include this
     event.preventDefault();
-
     // Validate
     let isError = validate();
 
@@ -128,7 +127,7 @@ export default function Address() {
       router.push("/checkout");
     } catch (error) {
       setIsUpdatingAddress(false);
-      console.log(error);
+      console.log("The error is", error);
       alert(error);
     }
   };
@@ -180,7 +179,7 @@ export default function Address() {
               <div className="mb-4">
                 <ClientOnly>
                   <TextInput
-                    className="w-full"
+                    className="w-full mt-2"
                     string={city}
                     placeholder="City"
                     onUpdate={setCity}
@@ -189,10 +188,10 @@ export default function Address() {
                 </ClientOnly>
               </div>
 
-              <div className="mb-4">
+              <div>
                 <ClientOnly>
                   <TextInput
-                    className="w-full"
+                    className="w-full mt-2"
                     string={country}
                     placeholder="Country"
                     onUpdate={setCountry}
