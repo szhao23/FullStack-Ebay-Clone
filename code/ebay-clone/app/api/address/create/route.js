@@ -30,7 +30,7 @@ export async function POST(req) {
     });
 
     await prisma.$disconnect();
-    return new NextResponse.json(res);
+    return NextResponse.json(res);
   } catch (error) {
     console.log(error);
     await prisma.$disconnect();
