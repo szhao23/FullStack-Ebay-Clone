@@ -18,7 +18,7 @@ export async function POST(req) {
 
     const body = await req.json();
 
-    const res = await prisma.address.update({
+    const res = await prisma.addresses.update({
       where: { id: Number(body.addressId) },
       data: {
         name: body.name,

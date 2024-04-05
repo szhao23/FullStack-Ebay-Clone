@@ -1,7 +1,5 @@
 const useCreateAddress = async (details) => {
   let url = "create";
-  if (details.addressId) url = "update";
-
   // If there is an address ID passed in, update
   if (details.addressId) url = "update";
 

@@ -69,6 +69,7 @@ export default function Address() {
 
   // Validation for Text Input
   const validate = () => {
+    setError(null);
     setError({});
     let isError = false;
 
@@ -127,7 +128,7 @@ export default function Address() {
       router.push("/checkout");
     } catch (error) {
       setIsUpdatingAddress(false);
-      console.log("The error is", error);
+      console.log("The error is: ", error);
       alert(error);
     }
   };
