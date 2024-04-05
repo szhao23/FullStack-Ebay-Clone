@@ -3,8 +3,22 @@
 import MainLayout from "../layouts/MainLayout";
 import SimilarProducts from "../components/SimilarProducts";
 import CartItem from "../components/CartItem";
+import { useRouter } from "next/navigation";
+import { useCart } from "../context/cart";
+import { useEffect } from "react";
+import useIsLoading from "../hooks/useIsLoading";
 
 export default function Cart() {
+  const router = useRouter();
+  const cart = useCart();
+
+  useEffect(() => {
+    useIsLoading(true);
+    cart.getCart();
+    cart.cartTotal();
+    useIsLoading(false);
+  }, [cart]);
+
   const product = {
     id: 1,
     title: "Brown Leather Bag",
