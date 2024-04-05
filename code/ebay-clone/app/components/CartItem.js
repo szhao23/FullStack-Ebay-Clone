@@ -9,7 +9,7 @@ export default function CartItem({ product }) {
 
   const removeItemFromCart = () => {
     let res = confirm(
-      `Are you sure you want to remove this? "${product.title}`
+      `Are you sure you want to remove this Item? "${product.title}"`
     );
     if (res) {
       cart.removeFromCart(product);
