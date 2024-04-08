@@ -2,16 +2,21 @@
 
 import CheckoutItem from "../components/CheckoutItem";
 import MainLayout from "../layouts/MainLayout";
+import { useRouter } from "next/navigation";
+import { useCart } from "../context/user";
+import { useUser } from "../context/user";
+import { useRef, useState } from "react";
 
 export default function Checkout() {
-  const product = {
-    id: 1,
-    title: "Brown Leather Bag",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo modi quia illo dolore unde dolorem expedita assumenda enim fugit magnam? Earum quibusdam quas quaerat placeat dolor! Quisquam ut harum omnis.",
-    url: "https://picsum.photos/id/7",
-    price: 2500, // EG: $25.00
-  };
+  
+  const user = useUser();
+  const cart = useCart();
+  const router = useRouter();
+
+  let stripe = useRef(null)
+  let elements = useRef(null)
+  let card = useRef(null)
+  let clientSecret = useRef(null)
 
   return (
     <>
