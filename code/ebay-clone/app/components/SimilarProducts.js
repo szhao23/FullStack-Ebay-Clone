@@ -3,26 +3,30 @@
 import Image from "next/image";
 import ProductComp from "./Product";
 import { BiLoader } from "react-icons/bi";
+import { useEffect, useState } from "react";
 
 export default function SimilarProducts() {
-  const products = [
-    {
-      id: 1,
-      title: "Brown Leather Bag",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo modi quia illo dolore unde dolorem expedita assumenda enim fugit magnam? Earum quibusdam quas quaerat placeat dolor! Quisquam ut harum omnis.",
-      url: "https://picsum.photos/id/7",
-      price: 2500, // EG: $25.00
-    },
-    {
-      id: 2,
-      title: "School Books",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo modi quia illo dolore unde dolorem expedita assumenda enim fugit magnam? Earum quibusdam quas quaerat placeat dolor! Quisquam ut harum omnis.",
-      url: "https://picsum.photos/id/20",
-      price: 1999, // EG: $25.00
-    },
-  ];
+  
+  const [products, setProducts] = useState([])
+
+  const getRandomProducts = async () => {
+    try {
+      const response = await fetch('/api/products/get-random')
+      const result = await response.json()
+
+      if(result) {
+        setProducts(result)
+        return
+      }
+    } catch (error) {
+      console.log(error)
+      alert(error)
+    }
+  }
+
+  useEffect(() => {
+    getRandomProducts()
+  }, [])
 
   return (
     <>
