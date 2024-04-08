@@ -7,8 +7,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useUser } from "./../context/user";
 import { useCart } from "../context/cart";
 import { useRouter } from "next/navigation";
-import useIsLoading from './../hooks/useIsLoading';
-import { toast } from 'react-toastify';
+import useIsLoading from "./../hooks/useIsLoading";
+import { toast } from "react-toastify";
+import useUserAddress from "../hooks/useUserAddress";
 
 export default function Checkout() {
   const user = useUser();
@@ -29,7 +30,7 @@ export default function Checkout() {
       return router.push("/");
     }
 
-    useIsLoading(true);
+    useIsLoading(false);
 
     const getAddress = async () => {
       if (user?.id == null || user?.id == undefined) {
@@ -68,7 +69,6 @@ export default function Checkout() {
         iconColor: "#EE4B2B",
       },
     };
-
     card.current = elements.current.create("card", {
       hidePostalCode: true,
       style: style,
