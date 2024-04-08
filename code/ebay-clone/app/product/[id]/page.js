@@ -12,6 +12,7 @@ export default function Product({ params }) {
 
   const [product, setProduct] = useState({});
 
+  // Fetch Product by ID
   const getProduct = async () => {
     useIsLoading(true);
     setProduct({});
@@ -24,8 +25,8 @@ export default function Product({ params }) {
   };
 
   useEffect(() => {
-    getProduct()
-  }, [])
+    getProduct();
+  }, []);
 
   return (
     <MainLayout>
