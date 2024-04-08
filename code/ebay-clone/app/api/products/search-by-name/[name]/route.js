@@ -9,6 +9,7 @@ export async function GET(req, context) {
 
     // Get items
     const items = await prisma.products.findMany({
+      // Search by name, and fetch the first 5 that appear
       take: 5,
       where: {
         title: {
