@@ -4,23 +4,28 @@ import MainLayout from "@/app/layouts/MainLayout";
 import SimilarProducts from "../../components/SimilarProducts";
 import { useCart } from "@/app/context/cart";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useIsLoading from "@/app/hooks/useIsLoading";
 
 export default function Product({ params }) {
   const cart = useCart();
 
-  // const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({});
 
-  // const getProduct = async () => {
-  //   useIsLoading(true)
-  //   setProduct({})
+  const getProduct = async () => {
+    useIsLoading(true);
+    setProduct({});
 
-  //   const response = await fetch(`/api/product/${params.id}`)
-  //   const prod = await response.json()
-  //   setProduct(prod)
-  // }
+    const response = await fetch(`/api/product/${params.id}`);
+    const prod = await response.json();
+    setProduct(prod);
+    cart.isItemAddedToCart(prod);
+    useIsLoading(false);
+  };
 
+  useEffect(() => {
+    getProduct()
+  }, [])
 
   return (
     <MainLayout>
