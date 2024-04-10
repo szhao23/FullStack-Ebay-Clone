@@ -93,19 +93,21 @@ export default function TopMenu() {
             Ship to
           </li>
           <li className="px-3 hover:underline cursor-pointer">
-            <div className="relative">
-              <AiOutlineShoppingCart size={22} />
+            <Link href="/cart">
+              <div className="relative">
+                <AiOutlineShoppingCart size={22} />
 
-              {cart.cartCount() > 0 ? (
-                <div className="absolute text-[10px] -top-[2px] -right-[5px] bg-red-500 w-[14px] h-[14px] rounded-full text-white">
-                  <div className="flex items-center justify-center -mb-[-2px]">
-                    {cart.cartCount()}
+                {cart.cartCount() > 0 ? (
+                  <div className="absolute text-[10px] -top-[2px] -right-[5px] bg-red-500 w-[14px] h-[14px] rounded-full text-white">
+                    <div className="flex items-center justify-center -mb-[-2px]">
+                      {cart.cartCount()}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div></div>
-              )}
-            </div>
+                ) : (
+                  <div></div>
+                )}
+              </div>
+            </Link>
           </li>
         </ul>
       </div>
