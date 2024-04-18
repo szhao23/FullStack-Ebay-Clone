@@ -27,6 +27,7 @@ export default function Checkout() {
   useEffect(() => {
     if (cart?.cartTotal() <= 0) {
       toast.error("Your cart is empty!", { autoClose: 3000 });
+      // Redirect to Home Page
       return router.push("/");
     }
 
@@ -58,6 +59,8 @@ export default function Checkout() {
       body: JSON.stringify({ amount: cart.cartTotal() }),
     });
     const result = await response.json();
+
+    console.log("Client Secret: ", result.client_secret);
 
     clientSecret.current = result.client_secret;
     elements.current = stripe.current.elements();

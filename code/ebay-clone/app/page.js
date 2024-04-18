@@ -3,26 +3,26 @@
 import MainLayout from "./layouts/MainLayout";
 import CarouselComp from "./components/CarouselComp";
 import Product from "./components/Product";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import useIsLoading from "./hooks/useIsLoading";
 
 export default function Home() {
-  const [products, setProducts] = useState([])
-  
-  const getProducts = async () => {
-    useIsLoading(true)
+  const [products, setProducts] = useState([]);
 
-    const response = await fetch('/api/products')
+  const getProducts = async () => {
+    useIsLoading(true);
+
+    const response = await fetch("/api/products");
     const prods = await response.json();
 
-    setProducts([])
-    setProducts(prods)
-    useIsLoading(false)
-  }
-  
+    setProducts([]);
+    setProducts(prods);
+    useIsLoading(false);
+  };
+
   useEffect(() => {
-    getProducts()
-  }, [])
+    getProducts();
+  }, []);
 
   return (
     <MainLayout>
